@@ -1,4 +1,38 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+ext {
+    bintrayRepo = 'maven' // Name of the Bintray repo you created
+    bintrayName = 'com.rajneesh.demo:mypreference' // Bintray package name
+
+    publishedGroupId = 'com.rajneesh.demo' // Group ID of the SDK which will be added in implementation line of gradle
+    artifact = 'mypreference' // Artifact ID of the SDK which will be added in implementation line of gradle
+    libraryVersion = '1.0.0' // Version of the library you created in Bintray
+
+    libraryName = 'My Preference Utils' // It is generally the module name
+    libraryDescription = 'Utlity to use shared preference in your app.' // Small description of the library
+
+    siteUrl = 'https://github.com/RajneeshShukla/my-preference-utils'
+    gitUrl = 'https://github.com/RajneeshShukla/my-preference-utils.git'
+
+    developerId = 'RajneeshShukla'
+    developerName = 'Rajneesh Shukla'
+    developerEmail = 'rajneesh9651@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+    //Bintray Credentials
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    bintrayUsername = properties.getProperty('rajneeshshukla')
+    bintrayUserOrg = properties.getProperty('')
+    bintrayApiKey = properties.getProperty('2cc7750322fbe4c54c71edd98ed0c69d0d4f4c03')
+}
 
 android {
     compileSdkVersion 29
@@ -30,3 +64,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
 }
+
+apply from: 'bintray.script'
